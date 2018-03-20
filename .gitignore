@@ -1,3 +1,3 @@
 *.o
-*.a
+list_ref/*.a
 bin_*
