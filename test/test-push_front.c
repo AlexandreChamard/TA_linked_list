@@ -17,7 +17,7 @@ int main(void)
 
 	for (; arr[i] != -1; ++i) {
 		printf("push_front: %d\n", arr[i]);
-		push_front(&list, &arr[i]);
+		push_front(&list, arr[i]);
 	}
 	size_array = i;
 	assert(list.size == i);
@@ -27,9 +27,9 @@ int main(void)
 		printf("access elem n°%ld\n", size_array - i);
 		printf("expected: %d\n", arr[i - 1]);
 		assert(elem != NULL);
-		assert(elem->data == &arr[i - 1]);
-		assert(*(int*)elem->data == arr[i - 1]);
-		printf("result: %d\n", *(int*)elem->data);
+		assert(elem->data == arr[i - 1]);
+		assert(elem->data == arr[i - 1]);
+		printf("result: %d\n", elem->data);
 		elem = NEXT(elem);
 	}
 	elem = list.back;
@@ -38,9 +38,9 @@ int main(void)
 		printf("access elem n°%ld\n", i);
 		printf("expected: %d\n", arr[i]);
 		assert(elem != NULL);
-		assert(elem->data == &arr[i]);
-		assert(*(int*)elem->data == arr[i]);
-		printf("result: %d\n", *(int*)elem->data);
+		assert(elem->data == arr[i]);
+		assert(elem->data == arr[i]);
+		printf("result: %d\n", elem->data);
 		elem = PREV(elem);
 	}
 	return (0);
