@@ -35,3 +35,4 @@ void	clear(list_t *list);
 void foreach(list_t *list, void (*)(int *));
 void remove_if(list_t *list, bool (*)(int));
 void sort(list_t *list, int (*)(int, int));
+void reverse(list_t *list);

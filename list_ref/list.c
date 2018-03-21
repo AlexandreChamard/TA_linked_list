@@ -159,3 +159,24 @@ void sort(list_t *list, int (*func)(int, int))
 		}
 	}
 }
+
+void reverse(list_t *list)
+{
+	elem_t *first_elem = list->front;
+	elem_t *second_elem = list->back;
+	int swap;
+
+	if (list->size <= 1) {
+		return;
+	}
+	while (first_elem != second_elem) {
+		swap = first_elem->data;
+		first_elem->data = second_elem->data;
+		second_elem->data = swap;
+		first_elem = NEXT(first_elem);
+		if (first_elem == second_elem) {
+			break;
+		}
+		second_elem = PREV(second_elem);
+	}
+}

@@ -15,12 +15,31 @@ int main(void)
 	size_t i = 0;
 
 	for (; arr[i] != -1; ++i) {
+		printf("push_back %d\n", arr[i]);
 		push_back(&list, arr[i]);
 	}
 	assert(list.size == i);
+
+	puts("\nclear");
 	clear(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);
+
+	puts("\nclear a cleared list");
+	clear(&list);
+	assert(list.size == 0);
+	assert(list.front == NULL);
+	assert(list.back == NULL);
+
+	printf("\npush front %d\n", 42);
+	push_front(&list, 42);
+
+	puts("\nclear");
+	clear(&list);
+	assert(list.size == 0);
+	assert(list.front == NULL);
+	assert(list.back == NULL);
+
 	return (0);
 }
