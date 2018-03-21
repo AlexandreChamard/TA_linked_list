@@ -10,6 +10,8 @@ if [[ $1 == '-h' || $1 == '-help' || $1 == '--help' ]]; then
 	exit 0
 fi
 
+exitt=0
+
 for file in test-*.c
 do
 	if [[ $file == 'test-*.c' ]]; then
@@ -29,10 +31,17 @@ do
 			echo -e '\033[1;92m''SUCCESS\n''\033[0;97m'
 		else
 			echo -e '\033[1;31m''FAILURE\n''\033[0;97m'
+			exitt=1
 		fi
 	else
 		echo "ERROR COMPILE: "$file
 		exit 1
 	fi
 done
-exit 0
+if [[ $exitt == 1 ]];then
+	echo 'KO'
+	exit 1
+else
+	echo 'OK'
+	exit 0
+fi
