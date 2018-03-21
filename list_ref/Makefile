@@ -2,7 +2,7 @@ CC	=	gcc
 
 AR	=	ar rc
 
-CFLAGS	=	-W -Wall -Wextra -Werror -g
+CFLAGS	=	-W -Wall -Wextra -Werror
 CFLAGS	+=	-I../include
 
 SRC	=	list.c
@@ -23,4 +23,3 @@ re	:	fclean all
 
 $(NAME)	:	$(OBJ)
 		$(AR) $(NAME) $(OBJ)
-		cp $(NAME) ../$(NAME)

@@ -80,7 +80,7 @@ void	pop_back(list_t *list)
 	list->back = list->back->prev;
 	--list->size;
 	if (list->size != 0) {
-		list->front->prev = NULL;
+		list->back->next = NULL;
 	} else {
 		list->front = NULL;
 	}
@@ -138,6 +138,24 @@ void remove_if(list_t *list, bool (*func)(int))
 
 void sort(list_t *list, int (*func)(int, int))
 {
-	(void)list;
-	(void)func;
+	elem_t *elem = NULL;
+	bool sorted = false;
+	int swap;
+
+	if (list->size <= 1) {
+		return;
+	}
+	while (sorted == false) {
+		sorted = true;
+		elem = list->front;
+		while (elem->next != NULL) {
+			if (func(elem->data, elem->next->data) > 0) {
+				swap = elem->data;
+				elem->data = elem->next->data;
+				elem->next->data = swap;
+				sorted = false;
+			}
+			elem = NEXT(elem);
+		}
+	}
 }
