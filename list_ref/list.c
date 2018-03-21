@@ -94,10 +94,10 @@ void	clear(list_t *list)
 	}
 }
 
-void foreach(list_t *list, void (*func)(elem_t *))
+void foreach(list_t *list, void (*func)(int *))
 {
 	for (elem_t *elem = list->front; elem != NULL; elem = NEXT(elem)) {
-		func(elem);
+		func(&elem->data);
 	}
 }
 
