@@ -42,25 +42,25 @@ int main(void)
 	verif_reverse(&list, ref_arr);
 
 	puts("\nreverse list");
-	reverse(&list);
+	reverse_list(&list);
 	verif_reverse(&list, ref_rev_arr);
 
 	puts("\nre-reverse list");
-	reverse(&list);
+	reverse_list(&list);
 	verif_reverse(&list, ref_arr);
 
 	puts("\nre-reverse another time");
-	reverse(&list);
+	reverse_list(&list);
 	verif_reverse(&list, ref_rev_arr);
 
 	puts("\nclear");
-	clear(&list);
+	clear_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);
 
 	puts("\nreverse empty list");
-	reverse(&list);
+	reverse_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);

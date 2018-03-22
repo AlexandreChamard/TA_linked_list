@@ -9,7 +9,12 @@
 #include <string.h>
 #include "list.h"
 
-bool	push_front(list_t *list, int data)
+void init_list(list_t *list)
+{
+	memset(list, 0, sizeof(*list));
+}
+
+elem_t *create_new_elem(int nb)
 {
 	elem_t *elem = malloc(sizeof(*elem));
 
@@ -17,7 +22,17 @@ bool	push_front(list_t *list, int data)
 		return (false);
 	}
 	memset(elem, 0, sizeof(*elem));
-	elem->data = data;
+	elem->data = nb;
+	return (elem);
+}
+
+bool	push_front(list_t *list, int data)
+{
+	elem_t *elem = create_new_elem(data);
+
+	if (elem == NULL) {
+		return (false);
+	}
 	if (list->size == 0) {
 		list->front = elem;
 		list->back = elem;
@@ -32,13 +47,11 @@ bool	push_front(list_t *list, int data)
 
 bool	push_back(list_t *list, int data)
 {
-	elem_t *elem = malloc(sizeof(*elem));
+	elem_t *elem = create_new_elem(data);
 
 	if (elem == NULL) {
 		return (false);
 	}
-	memset(elem, 0, sizeof(*elem));
-	elem->data = data;
 	if (list->size == 0) {
 		list->front = elem;
 		list->back = elem;
@@ -48,6 +61,37 @@ bool	push_back(list_t *list, int data)
 		list->back = elem;
 	}
 	++list->size;
+	return (true);
+}
+
+bool	insert_at(list_t *list, size_t at, int data)
+{
+	elem_t *elem = list->front;
+	elem_t *new_elem = create_new_elem(data);
+
+	if (new_elem == NULL) {
+		return (false);
+	}
+	if (list->size == 0) {
+		list->front = new_elem;
+		list->back = new_elem;
+		++list->size;
+	} else if (at >= list->size) {
+		push_back(list, data);
+	} else if (at == 0){
+		push_front(list, data);
+	} else {
+		for (size_t i = 0; i < at; i++) {
+			elem = NEXT(elem);
+		}
+		if (elem != NULL) {
+			new_elem->prev = elem->prev;
+			new_elem->next = elem;
+			elem->prev->next = new_elem;
+			elem->prev = new_elem;
+			++list->size;
+		}
+	}
 	return (true);
 }
 
@@ -87,7 +131,32 @@ void	pop_back(list_t *list)
 	free(elem);
 }
 
-void	clear(list_t *list)
+void	remove_at(list_t *list, size_t at)
+{
+	if (at >= list->size) {
+		return;
+	}
+
+	elem_t *elem = list->front;
+
+	for (size_t i = 0; i < at; i++) {
+		elem = NEXT(elem);
+	}
+	if (elem != list->front) {
+		elem->prev->next = elem->next;
+	} else {
+		list->front = elem->next;
+	}
+	if (elem != list->back) {
+		elem->next->prev = elem->prev;
+	} else {
+		list->back = elem->prev;
+	}
+	--list->size;
+	free(elem);
+}
+
+void	clear_list(list_t *list)
 {
 	while (list->size != 0) {
 		pop_front(list);
@@ -136,7 +205,7 @@ void remove_if(list_t *list, bool (*func)(int))
 	}
 }
 
-void sort(list_t *list, int (*func)(int, int))
+void sort_list(list_t *list, int (*func)(int, int))
 {
 	elem_t *elem = NULL;
 	bool sorted = false;
@@ -160,7 +229,7 @@ void sort(list_t *list, int (*func)(int, int))
 	}
 }
 
-void reverse(list_t *list)
+void reverse_list(list_t *list)
 {
 	elem_t *first_elem = list->front;
 	elem_t *second_elem = list->back;

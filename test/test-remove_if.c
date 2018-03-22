@@ -96,7 +96,7 @@ int main(void)
 	assert(list.size == 0);
 
 	puts("\nclear");
-	clear(&list);
+	clear_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);

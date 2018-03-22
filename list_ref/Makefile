@@ -2,7 +2,7 @@ CC	=	gcc
 
 AR	=	ar rc
 
-CFLAGS	=	-W -Wall -Wextra -Werror
+CFLAGS	=	-W -Wall -Wextra -Werror -g
 CFLAGS	+=	-I../include
 
 SRC	=	list.c

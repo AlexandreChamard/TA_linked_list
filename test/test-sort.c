@@ -53,25 +53,25 @@ int main(void)
 	assert(list.size == i);
 
 	puts("\nsort an sorted list");
-	sort(&list, sort_int);
+	sort_list(&list, sort_int);
 	verif_sorted(&list, ref_arr);
 
 	puts("\nreverse sort");
-	sort(&list, rev_sort_int);
+	sort_list(&list, rev_sort_int);
 	verif_sorted(&list, ref_rev_arr);
 
 	puts("\nsort");
-	sort(&list, sort_int);
+	sort_list(&list, sort_int);
 	verif_sorted(&list, ref_arr);
 
 	puts("\nclear");
-	clear(&list);
+	clear_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);
 
 	puts("\nsort empty list");
-	sort(&list, sort_int);
+	sort_list(&list, sort_int);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);

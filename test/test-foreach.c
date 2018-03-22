@@ -64,7 +64,7 @@ int main(void)
 	assert(res == (1+2+3+4+5+6+7+8) * 2);
 
 	puts("clear");
-	clear(&list);
+	clear_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);

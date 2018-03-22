@@ -21,13 +21,13 @@ int main(void)
 	assert(list.size == i);
 
 	puts("\nclear");
-	clear(&list);
+	clear_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);
 
 	puts("\nclear a cleared list");
-	clear(&list);
+	clear_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);
@@ -36,7 +36,7 @@ int main(void)
 	push_front(&list, 42);
 
 	puts("\nclear");
-	clear(&list);
+	clear_list(&list);
 	assert(list.size == 0);
 	assert(list.front == NULL);
 	assert(list.back == NULL);
