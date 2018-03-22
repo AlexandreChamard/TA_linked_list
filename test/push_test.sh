@@ -8,7 +8,7 @@ for file in ${files[*]}
 do
 	bin="bin_"${file:5: -2}
 	echo ${file:5: -2}
-	gcc -W -Wall -Wextra -g -o $bin $file -L. -llist > /dev/null
+	gcc -W -Wall -Wextra -g -o $bin $file -L. -l:$1 > /dev/null
 	if [[ $? == 0 ]]; then
 		./$bin
 		if [[ $? == 0 ]]; then
